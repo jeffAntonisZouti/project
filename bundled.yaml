@@ -36,6 +36,11 @@ tags:
   - name: demo
   - name: gateway
   - name: integration
+
+
+security:
+  - noAuth: []
+
 paths:
   /auth/login:
     post:
@@ -77,9 +82,7 @@ paths:
                 type: object
                 properties:
                   user:
-                    $ref:
-                      "#/paths.users.post.responses.200.content.application_json.schema.prop\
-                      erties.user"
+                    type: object
                   token:
                     type: string
   /auth/forgot-password:
@@ -239,3 +242,9 @@ paths:
                       events: []
                   token:
                     type: string
+
+securitySchemes:
+    noAuth:
+        type: apiKey
+        in: cookie
+        name: Auth-Graviteeio-APIM
